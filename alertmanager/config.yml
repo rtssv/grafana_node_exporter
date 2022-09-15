@@ -1,0 +1,32 @@
+route:
+    receiver: 'telegram1'
+    routes:
+    - receiver: 'telegram1'
+      group_wait: 10s
+      match_re:
+        severity: critical|warning
+      continue: true
+
+    - receiver: 'telegram2'
+      group_wait: 10s
+      match_re:
+        severity: critical|warning
+      continue: true
+
+receivers:
+- name: 'telegram1' 
+  telegram_configs:
+  - bot_token: #здесь нужно указать токет бота
+    chat_id: # здесь ID пользователя телеграм куда отправлять сообщения
+    api_url: "https://api.telegram.org"
+    send_resolved: true
+    parse_mode: HTML
+
+- name: 'telegram2'
+  telegram_configs:
+  - bot_token: #здесь нужно указать токет бота
+    chat_id: #здесь ID пользователя телеграм куда отправлять сообщения
+    api_url: "https://api.telegram.org"
+    send_resolved: true
+    parse_mode: HTML
+
