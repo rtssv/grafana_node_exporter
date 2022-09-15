@@ -1,0 +1,11 @@
+groups: 
+- name: alerting_rules
+  rules:
+  - alert: DiskSpace70%Free
+    expr: 100 - ((node_filesystem_avail_bytes{instance="172.17.0.1:9100",job="node",device!~'rootfs'} * 100) / node_filesystem_size_bytes{instance="172.17.0.1:9100",job="node",device!~'rootfs'}) >= 70 
+    # Note that previous expression evaluates the metric defined in the recording rule.
+    labels:
+      severity: critical 
+    annotations:
+      summary: "Instance {{ $labels.instance }} is low on disk space"
+      description: "{{ $labels.instance }} has only {{ $value }}% free."
