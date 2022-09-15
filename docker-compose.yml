@@ -9,6 +9,18 @@ services:
         ports:
             - 127.0.0.1:9090:9090
         restart: always
+        
+    alertmanager:
+      image: prom/alertmanager:latest
+      ports:
+        - 127.0.0.1:9093:9093
+      user: 'root'
+      volumes:
+        - ./alertmanager/:/etc/alertmanager/
+      restart: always
+      command:
+        - '--config.file=/etc/alertmanager/config.yml'
+        - '--storage.path=/etc/alertmanager/data'
 
     node-exporter:
         image: prom/node-exporter
