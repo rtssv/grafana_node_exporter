@@ -40,7 +40,7 @@ groups:
 
 - name: containers
   rules:
-  - alert: incongnito
+  - alert: incognito
     expr: absent(container_memory_usage_bytes{name="inc_mainnet_0"})
     for: 30s
     labels:
