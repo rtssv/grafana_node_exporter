@@ -2,6 +2,8 @@ version: '3.2'
 services:
     prometheus:
         image: prom/prometheus
+        extra_hosts:
+            - name_for_server:172.17.0.1
         volumes:
             - ./prometheus:/etc/prometheus/
         command:
