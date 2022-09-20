@@ -47,7 +47,7 @@ groups:
       severity: critical
     annotations:
       summary: "Incognito down"
-      description: "Incognito container is down for more than 30 seconds."
+      description: "Incognito container on {{ $labels.instance }} is down for more than 30 seconds."
 
   - alert: incognito_high_cpu
     expr: sum(rate(container_cpu_usage_seconds_total{name="inc_mainnet_0"}[1m])) / count(node_cpu_seconds_total{mode="system"}) * 100 > 70
@@ -56,13 +56,14 @@ groups:
       severity: warning
     annotations:
       summary: "Incognito high CPU usage"
-      description: "Incognito CPU usage is {{ humanize $value}}%."
+      description: "Incognito container on {{ $labels.instance }} CPU usage is {{ humanize $value}}%."
 
-  - alert: incognito_high_memory
-    expr: sum(container_memory_usage_bytes{name="inc_mainnet_0"}) > 8000000000
-    for: 30s
-    labels:
-      severity: warning
-    annotations:
-      summary: "Incognito high memory usage"
-      description: "Incognito memory consumption is at {{ humanize $value}}."
+#  - alert: incognito_high_memory
+#    expr: sum(container_memory_usage_bytes{name="inc_mainnet_0"}) > 8000000000
+#    for: 30s
+#    labels:
+#      severity: warning
+#    annotations:
+#      summary: "Incognito high memory usage"
+#      description: "Incognito memory consumption is at {{ humanize $value}}."
+#
