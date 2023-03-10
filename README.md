@@ -10,7 +10,7 @@ curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compo
 
 chmod +x /usr/local/bin/docker-compose
 
-Клонируем репозиторий заббикс-докера
+Клонируем репозиторий
 
 git clone https://github.com/rtssv/grafana_node_exporter.git
 
